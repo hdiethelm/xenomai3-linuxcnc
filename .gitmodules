@@ -1,0 +1,6 @@
+[submodule "linux-dovetail"]
+	path = linux-dovetail
+	url = https://gitlab.com/Xenomai/linux-dovetail
+[submodule "xenomai3"]
+	path = xenomai3
+	url = https://gitlab.com/Xenomai/xenomai3/xenomai.git
