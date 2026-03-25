@@ -52,9 +52,8 @@
 #make and install
 cd xenomai3
 
-patch -p1 < ../xenomai3-master.patch
 ./scripts/bootstrap
-./configure --with-core=mercury --enable-smp --enable-pshared --enable-dlopen-libs
+./configure --enable-smp --enable-pshared --enable-dlopen-libs
 make
 sudo make install
 echo "/usr/xenomai/lib" | sudo tee /etc/ld.so.conf.d/xenomai.conf > /dev/null
