@@ -7,6 +7,7 @@
 #git clone https://gitlab.com/Xenomai/xenomai3/xenomai.git xenomai3
 #git -C xenomai3 checkout master #73ad3b8ac131cd2ec400108dc74ca8edded7318f as of now
 XENOMAI_GIT_VERSION=73ad3b
+KERNEL_VERSION_STUFFIX=1
 
 cd xenomai3
 scripts/prepare-kernel.sh --linux=../linux-dovetail/
@@ -15,7 +16,7 @@ cd ../linux-dovetail
 
 cp ../kconfig-base-config-6.12.74+deb13+1-rt-amd64.txt .config #Base: debian trixie config-6.12.74+deb13+1-rt-amd64
 make oldconfig
-make -j16 deb-pkg LOCALVERSION=-xenomai3-$XENOMAI_GIT_VERSION KDEB_PKGVERSION=$(make kernelversion)-1
+make -j16 deb-pkg LOCALVERSION=-xenomai3-$XENOMAI_GIT_VERSION KDEB_PKGVERSION=$(make kernelversion)-${KERNEL_VERSION_STUFFIX}
 cd ..
 
 #Xenomai3 userspace tools-------------------------------------
@@ -38,8 +39,8 @@ git -C linux-dovetail clean -fxd
 git -C linux-dovetail checkout -- .
 
 git add \
-  deb/linux-headers-6.12.67-xenomai3-${XENOMAI_GIT_VERSION}_6.12.67-1_amd64.deb \
-  deb/linux-image-6.12.67-xenomai3-${XENOMAI_GIT_VERSION}_6.12.67-1_amd64.deb
+  deb/linux-headers-6.12.67-xenomai3-${XENOMAI_GIT_VERSION}_6.12.67-${KERNEL_VERSION_STUFFIX}_amd64.deb \
+  deb/linux-image-6.12.67-xenomai3-${XENOMAI_GIT_VERSION}_6.12.67-${KERNEL_VERSION_STUFFIX}_amd64.deb
   
 git add \
   deb/libxenomai1_3.3-1-${XENOMAI_GIT_VERSION}_amd64.deb \
