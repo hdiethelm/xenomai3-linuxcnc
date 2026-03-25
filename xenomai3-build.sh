@@ -68,6 +68,8 @@ git clean -f deb/
 #git clone https://github.com/LinuxCNC/linuxcnc.git linuxcnc-src
 #cd inuxcnc-src/src
 ##export PATH=$PATH:/usr/xenomai/bin #Only for plain install
+#./debian/configure
+#sudo apt-get build-dep .
 #./autogen.sh
 #./configure --with-realtime=uspace
 #make -j
