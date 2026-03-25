@@ -26,21 +26,6 @@ DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-1-
 dpkg-buildpackage -b -uc
 cd ..
 
-#Xenomai3 userspace tools (plain install)--------------------
-#cd xenomai3
-
-#patch -p1 < ../xenomai3-master.patch
-#./scripts/bootstrap
-#./configure --with-core=mercury --enable-smp --enable-pshared --enable-dlopen-libs
-#make
-#sudo make install
-#echo "/usr/xenomai/lib" | sudo tee /etc/ld.so.conf.d/xenomai.conf > /dev/null
-#sudo ldconfig
-
-#uninstall:
-#sudo make uninstall
-#sudo rm -r /usr/xenomai/
-
 #Cleanup-----------------------------------------------------
 mkdir deb
 mv *.deb deb
@@ -63,25 +48,3 @@ git add \
   deb/xenomai-testsuite_3.3-1-${XENOMAI_GIT_VERSION}_amd64.deb
 
 git clean -f deb/
-
-#LinuxCNC------------------------------------------------------
-#git clone https://github.com/LinuxCNC/linuxcnc.git linuxcnc-src
-#cd inuxcnc-src/src
-##export PATH=$PATH:/usr/xenomai/bin #Only for plain install
-#./debian/configure
-#sudo apt-get build-dep .
-#./autogen.sh
-#./configure --with-realtime=uspace
-#make -j
-#sudo make setuid
-
-#configure should show:
-#checking for rtai-config... none
-#checking for xeno-config... /usr/xenomai/bin/xeno-config
-#checking for realtime API(s) to use... uspace+xenomai
-
-#LinuxCNC should show:
-#Note: Using XENOMAI (posix-skin) realtime
-
-#latency-histogram is broken and has to be started using:
-#../scripts/rip-environment ../scripts/latency-histogram
