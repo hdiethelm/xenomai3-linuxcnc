@@ -24,8 +24,8 @@
   - `./autogen.sh`
   - `./configure --with-realtime=uspace`
     - configure should show:<br>
-    `checking for rtai-config... none`
-    `checking for xeno-config... /usr/xenomai/bin/xeno-config`
+    `checking for rtai-config... none`<br>
+    `checking for xeno-config... /usr/xenomai/bin/xeno-config`<br>
     `checking for realtime API(s) to use... uspace+xenomai`
   - `make -j`
   - `sudo make setuid`
