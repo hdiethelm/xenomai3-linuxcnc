@@ -8,6 +8,7 @@
 #git -C xenomai3 checkout master #73ad3b8ac131cd2ec400108dc74ca8edded7318f as of now
 XENOMAI_GIT_VERSION=73ad3b
 KERNEL_VERSION_STUFFIX=1
+XENOMAI_VERSION_STUFFIX=2
 
 cd xenomai3
 scripts/prepare-kernel.sh --linux=../linux-dovetail/
@@ -22,8 +23,7 @@ cd ..
 #Xenomai3 userspace tools-------------------------------------
 cd xenomai3
 
-patch -p1 < ../xenomai3-master.patch
-DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-1-${XENOMAI_GIT_VERSION} "Build v3.3 master branch + patches"
+DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION} "Build v3.3 master branch + patches"
 dpkg-buildpackage -b -uc
 cd ..
 
@@ -43,9 +43,9 @@ git add \
   deb/linux-image-6.12.67-xenomai3-${XENOMAI_GIT_VERSION}_6.12.67-${KERNEL_VERSION_STUFFIX}_amd64.deb
   
 git add \
-  deb/libxenomai1_3.3-1-${XENOMAI_GIT_VERSION}_amd64.deb \
-  deb/libxenomai-dev_3.3-1-${XENOMAI_GIT_VERSION}_amd64.deb \
-  deb/xenomai-runtime_3.3-1-${XENOMAI_GIT_VERSION}_amd64.deb \
-  deb/xenomai-testsuite_3.3-1-${XENOMAI_GIT_VERSION}_amd64.deb
+  deb/libxenomai1_3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION}_amd64.deb \
+  deb/libxenomai-dev_3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION}_amd64.deb \
+  deb/xenomai-runtime_3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION}_amd64.deb \
+  deb/xenomai-testsuite_3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION}_amd64.deb
 
 git clean -f deb/
