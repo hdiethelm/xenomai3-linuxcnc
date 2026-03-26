@@ -46,6 +46,7 @@
 - Check for Xenomai enabled threads
   - `cat /proc/xenomai/sched/threads`
   - rtapi_app should show up on the isolated CPU
+  - `cat /proc/xenomai/sched/stat` shows the status MSW should stay constant (unwanted mode switches)
 
 ### Xenomai3 userspace tools plain install
 ```
