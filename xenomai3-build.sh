@@ -1,6 +1,8 @@
 #! /bin/sh
 
-source xenomai3-vars.sh
+set -e
+
+. ./xenomai3-vars.sh
 
 #Xenomai3 Kernel-----------------------------------------
 #git clone https://gitlab.com/Xenomai/linux-dovetail
@@ -38,8 +40,8 @@ git -C linux-dovetail clean -fxd
 git -C linux-dovetail checkout -- .
 
 git add \
-  deb/linux-headers-6.12.67-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb \
-  deb/linux-image-6.12.67-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb
+  deb/linux-headers-${KERNEL_VERSION}-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb \
+  deb/linux-image-${KERNEL_VERSION}-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb
   
 git add \
   deb/libxenomai1_3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION}_amd64.deb \

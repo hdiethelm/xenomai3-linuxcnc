@@ -1,5 +1,7 @@
 #! /bin/sh
 
+set -e
+
 #Xenomai3 Kernel-----------------------------------------
 sudo apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev dwarves git fakeroot rsync sbsigntool kernel-wedge
 
