@@ -23,7 +23,7 @@ cd ..
 
 #Xenomai3 userspace tools-------------------------------------
 cd xenomai3
-
+patch -p1 < ../xenomai3.patch
 DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION} "Build v3.3 master branch + patches"
 dpkg-buildpackage -b -uc
 cd ..
