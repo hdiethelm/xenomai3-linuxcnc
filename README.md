@@ -44,9 +44,18 @@
 For ethernet drivers, look in:
 https://gitlab.com/Xenomai/xenomai3/xenomai/-/blob/master/kernel/drivers/net/drivers/Kconfig?ref_type=heads
 
-The only two cards where drivers are availabe up to now for Xenimai3 and Xenomai4 are:
-- Intel(R) e1000e Gigabit Ethernet
-- Intel(R) 82575/82576 Gigabit Ethernet
+Driver info from Intel: https://www.intel.com/content/www/us/en/support/articles/000005480/ethernet-products.html
+
+The only two drivers are availabe up to now for Xenimai3 and Xenomai4 are:
+- Intel igb
+  - RTNet driver 2015 vs. upstream 2018
+  - Cards still on sale:
+    - 82576
+    - I210
+    - I350
+- Intel e1000e
+  - The RTNet driver 2011 vs. upstream 2018
+  - Works for tesing in qemu + virtmanager
 
 ### Xenomai3 tools
 - Xenomai latency test
