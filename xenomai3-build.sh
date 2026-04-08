@@ -12,6 +12,8 @@ set -e
 #git -C xenomai3 checkout master #73ad3b8ac131cd2ec400108dc74ca8edded7318f as of now
 
 cd xenomai3
+
+patch -p1 < ../xenomai3.patch
 scripts/prepare-kernel.sh --linux=../linux-dovetail/
 
 cd ../linux-dovetail
@@ -19,25 +21,33 @@ cd ../linux-dovetail
 cp ../kconfig-base-config-6.12.74+deb13+1-rt-amd64.txt .config #Base: debian trixie config-6.12.74+deb13+1-rt-amd64
 make oldconfig
 make -j16 deb-pkg LOCALVERSION=-xenomai3-$XENOMAI_GIT_VERSION KDEB_PKGVERSION=$(make kernelversion)-${KERNEL_VERSION_STUFFIX}
+
 cd ..
 
-#Xenomai3 userspace tools-------------------------------------
-cd xenomai3
-patch -p1 < ../xenomai3.patch
-DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION} "Build v3.3 master branch + patches"
-dpkg-buildpackage -b -uc
-cd ..
-
-#Cleanup-----------------------------------------------------
-mkdir deb
-mv *.deb deb
-rm *.changes *.buildinfo *.tar.gz *.dsc
-
+#Cleanup
 git -C xenomai3 clean -fxd
 git -C xenomai3 checkout -- .
 
 git -C linux-dovetail clean -fxd
 git -C linux-dovetail checkout -- .
+
+#Xenomai3 userspace tools-------------------------------------
+cd xenomai3
+
+patch -p1 < ../xenomai3.patch
+DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION} "Build v3.3 master branch + patches"
+dpkg-buildpackage -b -uc
+
+cd ..
+
+#Cleanup
+git -C xenomai3 clean -fxd
+git -C xenomai3 checkout -- .
+
+#Cleanup-----------------------------------------------------
+mkdir -p deb
+mv *.deb deb
+rm *.changes *.buildinfo *.tar.gz *.dsc
 
 git add \
   deb/linux-headers-${KERNEL_VERSION}-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb \

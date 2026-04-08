@@ -1,3 +1,5 @@
+#My hacky worksheet to get rtnet running in virtmanager
+
 /etc/modprobe.d/blacklist.conf
 blacklist e1000e
 blacklist virtio_balloon #Blocks rt_e1000e interrupt
@@ -28,4 +30,4 @@ rtpacket               20480  0
 rtudp                  20480  0
 rtipv4                 53248  2 rtudp,rtcfg
 rtnet                  86016  8 rtpacket,rtipv4,rt_e1000e,rtudp,rtcfg,rt_loopback,tdma,rtmac
-rtcap (not built)
+rtcap
