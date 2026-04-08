@@ -7,9 +7,10 @@ blacklist virtio_balloon #Blocks rt_e1000e interrupt
 #sudo rmmod e1000e rt_e1000e virtio_balloon
 #sudo modprobe rt_e1000e 
 
-sudo modprobe rt_loopback 
-#sudo modprobe rtpacket 
-sudo modprobe rtudp 
+#Normal
+sudo modprobe rt_loopback
+#sudo modprobe rtpacket
+sudo modprobe rtudp
 sudo modprobe rtipv4
 sudo rtifconfig rtlo up 127.0.0.1
 #sudo rtifconfig rteth0 down
@@ -18,6 +19,18 @@ sudo rtping 127.0.0.1
 sudo rtping 192.168.122.45
 #sudo rtroute add 192.168.122.44 52:54:00:d2:e5:35 dev rteth0
 #sudo rtroute add 192.168.122.0 netmask 255.255.255.0 gw 192.168.123.1
+sudo rtroute solicit 192.168.122.44 dev rteth0
+sudo rtping 192.168.122.44
+
+#Capture
+sudo modprobe rt_loopback
+#sudo modprobe rtpacket
+sudo modprobe rtudp
+sudo modprobe rtipv4
+sudo modprobe rtcap
+sudo rtifconfig rteth0 up 192.168.122.45 promisc
+sudo ifconfig rteth0 up
+sudo ifconfig rteth0-mac up
 sudo rtroute solicit 192.168.122.44 dev rteth0
 sudo rtping 192.168.122.44
 
@@ -30,4 +43,3 @@ rtpacket               20480  0
 rtudp                  20480  0
 rtipv4                 53248  2 rtudp,rtcfg
 rtnet                  86016  8 rtpacket,rtipv4,rt_e1000e,rtudp,rtcfg,rt_loopback,tdma,rtmac
-rtcap
