@@ -20,16 +20,16 @@ index 77a4c445a..a9effa984 100644
  usr/sbin
 +etc/rtnet.conf
 +etc/tdma.conf
-diff --git a/kernel/drivers/net/stack/rtnet_rtpc.c b/kernel/drivers/net/stack/rtnet_rtpc.c
-index cd5f0546d..caed27269 100644
---- a/kernel/drivers/net/stack/rtnet_rtpc.c
-+++ b/kernel/drivers/net/stack/rtnet_rtpc.c
-@@ -90,7 +90,7 @@ int rtnet_rtpc_dispatch_call(rtpc_proc proc, unsigned int timeout,
- 	if (call == NULL)
- 		return -ENOMEM;
+diff --git a/kernel/drivers/net/stack/include/rtnet_rtpc.h b/kernel/drivers/net/stack/include/rtnet_rtpc.h
+index 01d7ab152..f4ad47306 100644
+--- a/kernel/drivers/net/stack/include/rtnet_rtpc.h
++++ b/kernel/drivers/net/stack/include/rtnet_rtpc.h
+@@ -43,7 +43,7 @@ struct rt_proc_call {
+ 	atomic_t ref_count;
+ 	wait_queue_head_t call_wq;
+ 	rtpc_cleanup_proc cleanup_handler;
+-	char priv_data[0] __attribute__((aligned(8)));
++	char priv_data[] __attribute__((aligned(8)));
+ };
  
--	memcpy(call->priv_data, priv_data, priv_data_size);
-+	unsafe_memcpy(call->priv_data, priv_data, priv_data_size, /*embedded variable length data*/);
- 
- 	call->processed = 0;
- 	call->proc = proc;
+ #define CALL_PENDING 1000 /* result value for blocked calls */
