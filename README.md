@@ -48,14 +48,22 @@ Driver info from Intel: https://www.intel.com/content/www/us/en/support/articles
 
 The only two drivers are availabe up to now for Xenimai3 and Xenomai4 are:
 - Intel igb
-  - RTNet driver 2015 vs. upstream 2018
+  - The RTNet driver is older: 2015 vs. upstream 2018
   - Cards still on sale:
     - 82576
     - I210
     - I350
 - Intel e1000e
-  - The RTNet driver 2011 vs. upstream 2018
+  - The RTNet driver is older: 2011 vs. upstream 2018
   - Works for tesing in qemu + virtmanager
+  - The folling network cards probably work:
+    - 82563/6/7
+    - 82571/2/3/4/7/8/9
+    - 82583
+    - I217
+  - The following network cards meight not work, there are only a few or no occurences of this name in the xenimai module compared to the stock module:
+    - I218
+    - I219
 
 ### Xenomai3 tools
 - Xenomai latency test
