@@ -1,5 +1,9 @@
 # Xenomai3 Kernel for LinuxCNC
 
+<strong>Work in progress, things might not work or break your system!</strong>
+
+<strong>Feedback is welcome, create an issue or pull request</strong>
+
 <strong>Expected Distribution: Debian Trixie</strong>
 
 ## How To
@@ -39,6 +43,8 @@
 
 <strong>The target of this repo is to make it easy for others to use LinuxCNC with Xenomai3. No waranty can be given!</strong>
 
+All instuctions in here base on the documentation on https://v3.xenomai.org/ with some quirks resolved.
+
 ### Ethernet
 
 For ethernet drivers, look in:
@@ -75,6 +81,7 @@ The only two drivers are availabe up to now for Xenimai3 and Xenomai4 are:
   - `cat /proc/xenomai/sched/stat` shows the status MSW should stay constant (unwanted mode switches)
 
 ### Xenomai3 userspace tools plain install
+For other operating systems or if you have issues with the debian packages
 ```
 #make and install
 cd xenomai3
