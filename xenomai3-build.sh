@@ -13,7 +13,6 @@ set -e
 
 cd xenomai3
 
-patch -p1 < ../xenomai3.patch
 scripts/prepare-kernel.sh --linux=../linux-dovetail/
 
 cd ../linux-dovetail
@@ -34,8 +33,7 @@ git -C linux-dovetail checkout -- .
 #Xenomai3 userspace tools-------------------------------------
 cd xenomai3
 
-patch -p1 < ../xenomai3.patch
-DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION} "Build v3.3 master branch + patches"
+DEBEMAIL="hannes.diethelm@gmail.com" DEBFULLNAME="Hannes Diethelm" dch -v 3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION} "Build v3.3 master branch"
 dpkg-buildpackage -b -uc
 
 cd ..
@@ -50,8 +48,8 @@ mv *.deb deb
 rm *.changes *.buildinfo *.tar.gz *.dsc
 
 git add \
-  deb/linux-headers-${KERNEL_VERSION}-cip19-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb \
-  deb/linux-image-${KERNEL_VERSION}-cip19-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb
+  deb/linux-headers-${KERNEL_VERSION}-cip22-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb \
+  deb/linux-image-${KERNEL_VERSION}-cip22-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb
   
 git add \
   deb/libxenomai1_3.3-${XENOMAI_VERSION_STUFFIX}-${XENOMAI_GIT_VERSION}_amd64.deb \

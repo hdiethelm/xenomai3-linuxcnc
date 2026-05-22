@@ -9,8 +9,8 @@ sudo apt install gdb
 
 #Xenomai3 Kernel-----------------------------------------
 sudo dpkg -i \
-  deb/linux-headers-${KERNEL_VERSION}-cip19-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb \
-  deb/linux-image-${KERNEL_VERSION}-cip19-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb
+  deb/linux-headers-${KERNEL_VERSION}-cip22-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb \
+  deb/linux-image-${KERNEL_VERSION}-cip22-xenomai3-${XENOMAI_GIT_VERSION}_${KERNEL_VERSION}-${KERNEL_VERSION_STUFFIX}_amd64.deb
 
 #Xenomai3 userspace tools-------------------------------------
 sudo dpkg -i \
