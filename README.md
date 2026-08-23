@@ -1,25 +1,44 @@
 # Xenomai3 Kernel for LinuxCNC
 
+<strong>Warning:<br>The supplied scripts clean several folders without warning! Don't place anything inside this repository which you want to keep!</strong>
+
 <strong>Work in progress, things might not work or break your system!</strong>
 
 <strong>Feedback is welcome, create an issue or pull request</strong>
 
 <strong>Expected Distribution: Debian Trixie</strong>
 
-## How To
+## Install prebuilt kernel / xenomai userspace tools
 
 - Clone repo
-- If you trust my binary packages
-  - `./xenomai3-install.sh`
-- Build it from source
-  - `git submodule init`
-  - `git submodule update`
-  - `xenomai3-prepare.sh`
-  - `xenomai3-build.sh`
-  - `xenomai3-install.sh`
+- Download the github release
+  - `scripts/gh-download.sh kernel`
+  - `scripts/gh-download.sh xenomai`
+- Install the packages
+  - `scripts/install.sh kernel`
+  - `scripts/install.sh xenomai`
 - Reboot to xenomai kernel (You probably have to select it in grub)
 - Check for xenomai
   - `sudo dmesg | grep -i xenomai`
+- Build LinuxCNC from source
+
+## Build libevl and kernel from source
+
+- Clone repo
+- Build it from source
+  - `git submodule init`
+  - `git submodule update`
+  - `scripts/install-deps.sh`
+  - `scripts/build.sh kernel` or `scripts/build.sh kernel_rt` (Depending if you prefer a kernel without or with PREEMPT_RT)
+  - `scripts/build.sh xenomai`
+- Install
+  - `scripts/install.sh kernel` or `scripts/install.sh kernel_rt` (Depending if you prefer a kernel without or with PREEMPT_RT)
+  - `scripts/install.sh xenomai`
+- Reboot to xenomai kernel (You probably have to select it in grub)
+- Check for xenomai
+  - `sudo dmesg | grep -i xenomai`
+
+## Build LinuxCNC from source
 - Build LinuxCNC
   - `git clone https://github.com/LinuxCNC/linuxcnc.git linuxcnc-src`
   - `cd inuxcnc-src/src`
@@ -28,15 +47,16 @@
   - `./autogen.sh`
   - `./configure --with-realtime=uspace`
     - configure should show:<br>
-    `checking for rtai-config... none`<br>
     `checking for xeno-config... /usr/xenomai/bin/xeno-config`<br>
     `checking for realtime API(s) to use... uspace+xenomai`
-  - `make -j`
-  - `sudo make setuid`
+  - `make -j $(nproc)`
+  - If you are on 2.10 branch: `sudo make setuid`
+  - If you are on master branch: `sudo make setcap`
+    - LinuxCNC master supports rootless operation, 2.10 will fail
 - Run LinuxCNC
   - ../scripts/linuxcnc
   - LinuxCNC should show: `Note: Using XENOMAI (posix-skin) realtime`
-  - latency-histogram is broken and has to be started using: <br>
+  - latency-histogram has to be started using: <br>
   `../scripts/rip-environment ../scripts/latency-histogram`
 
 ## Notes
