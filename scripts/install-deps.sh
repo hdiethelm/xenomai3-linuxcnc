@@ -2,7 +2,7 @@
 
 set -e
 
-#Xenomai3 Kernel-----------------------------------------
+#Xenomai3 kernel-----------------------------------------
 sudo apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev dwarves git fakeroot rsync sbsigntool kernel-wedge
 
 #Xenomai3 userspace tools-------------------------------------
